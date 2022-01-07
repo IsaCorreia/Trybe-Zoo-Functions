@@ -1,11 +1,9 @@
-const {species} = require('../data/zoo_data');
+const { species } = require('../data/zoo_data');
 
-function getSpeciesByIds(ids) {
-  const selectedId = species.map((animal) => animal.id).find(id => id == ids);
-  return selectedId;\
+function getSpeciesByIds(...ids) {
+  // Ref: https://github.com/tryber/sd-018-b-project-zoo-functions/pull/116
+  // Percorre o array species, procurando(filtrando) objetos que contenham a chave ID igual ao IDS, retorna o objeto.
+  return species.filter((animal) => ids.includes(animal.id));
 }
 
-console.log(`final: ${getSpeciesByIds('0938aa23-f153-4937-9f88-4858b24d6bce')}`);
-
 module.exports = getSpeciesByIds;
-// Requisito 1!
