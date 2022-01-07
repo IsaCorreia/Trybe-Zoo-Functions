@@ -6,6 +6,4 @@ function getAnimalsOlderThan(animal, age) {
   // Procura na chave RESIDENTS se TODOS os membros tem idade maior ou igual ao número dado
   return animalsBySpeciesName.every((resident) => resident.age >= age);
 }
-
-console.log(`Todos os animais são mais velhos que X?: ${getAnimalsOlderThan('otters', 10)}`);;
 module.exports = getAnimalsOlderThan;
