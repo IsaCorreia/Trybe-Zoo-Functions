@@ -34,7 +34,8 @@ function getSchedule(scheduleTarget) {
   if (scheduleTarget !== undefined) {
     // Encontrar somente a agenda do animal selecionado
     if (animalsOfTheZoo.includes(scheduleTarget)) {
-      const animalSchedules = species.reduce((objFinal, selAnimal) => {
+      const animalSchedules = species.reduce((acc, selAnimal) => {
+        const objFinal = acc;
         objFinal[selAnimal.name] = selAnimal.availability;
         return objFinal;
       }, {});
