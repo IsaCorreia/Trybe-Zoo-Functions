@@ -1,8 +1,7 @@
 const { species, hours } = require('../data/zoo_data');
 
 const daysOfTheWeek = Object.keys(hours);
-
-// console.log(getSchedule('snakes'));
+const animalsOfTheZoo = species.map((animal) => animal.name); // Nome de todas as espécies do Zoo
 
 // Monta agenda de quais animais estão disponíveis no dia selecionado
 function getAnimalsByDay(weekday) {
@@ -16,7 +15,7 @@ function getAnimalsByDay(weekday) {
 }
 
 // Colab com Marcos Rafael
-function getByAnyString() {
+function fullSchedule() {
   const objNoParam = {};
 
   daysOfTheWeek.forEach((day) => {
@@ -34,17 +33,19 @@ function getSchedule(scheduleTarget) {
   // Entrada vazia ou inválida (nem dia, nem animal)
   if (scheduleTarget !== undefined) {
     // Encontrar somente a agenda do animal selecionado
-    species.forEach((animal) => {
-      if (animal.name.includes(scheduleTarget)) {
-        console.log(`entrada animal: ${scheduleTarget}`);
-      }
-    });
+    if (animalsOfTheZoo.includes(scheduleTarget)) {
+      const animalSchedules = species.reduce((objFinal, selAnimal) => {
+        objFinal[selAnimal.name] = selAnimal.availability;
+        return objFinal;
+      }, {});
+      return animalSchedules[scheduleTarget];
+    }
 
     if (daysOfTheWeek.includes(scheduleTarget)) {
-      return (`entrada dia da semana: ${scheduleTarget}`);
+      return { [scheduleTarget]: fullSchedule()[scheduleTarget] };
     }
   }
-  return getByAnyString();
+  return fullSchedule();
 }
 
 module.exports = getSchedule;
